@@ -23,12 +23,83 @@ class ViewController: UIViewController {
     let coconut = UIButton().createSegmentedControlButton(setTitle: "coconut")
     
     let django = UIButton().createSegmentedControlButton(setTitle: "django")
+    
+    let segmentedControlBackgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureScrollableSegmentedControl()
+        configureCustomSegmentedControl()
+    }
+    
+    @objc func handleSegmentedControlButtons(sender: UIButton) {
+        let segmentedControlButtons: [UIButton] = [
+            allFruits,
+            orange,
+            banana,
+            mango,
+            papaya,
+            coconut,
+            django,
+            grapes
+        ]
+        
+        for button in segmentedControlButtons {
+            if button == sender {
+                UIView.animate(withDuration: 0.2, delay: 0.1, options: .transitionFlipFromLeft) {
+                    button.backgroundColor = .white
+                }
+
+            } else {
+                UIView.animate(withDuration: 0.2, delay: 0.1, options: .transitionFlipFromLeft) { [weak self] in
+                    button.backgroundColor = self?.segmentedControlBackgroundColor
+                }
+            }
+        }
+        
+    }
+    
+    func configureCustomSegmentedControl() {
+        let segmentedControlButtons: [UIButton] = [
+            allFruits,
+            orange,
+            banana,
+            mango,
+            papaya,
+            coconut,
+            django,
+            grapes
+        ]
+        
+        segmentedControlButtons.forEach {$0.addTarget(self, action: #selector(handleSegmentedControlButtons(sender:)), for: .touchUpInside)}
+        
+        let stackView = UIStackView(arrangedSubviews: segmentedControlButtons)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: .zero, height: 50)
+        scrollView.backgroundColor = segmentedControlBackgroundColor
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        scrollView.addSubview(stackView)
+        
+        view.addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.heightAnchor.constraint(equalToConstant: 50),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
     }
     
     func configureScrollableSegmentedControl() {
