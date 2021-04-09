@@ -42,6 +42,21 @@ class ViewController: UIViewController {
         ])
         
     }
+}
 
+extension UIButton {
+    func createSegmentedControlButton(setTitle to: String) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(to, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
+        button.layer.cornerRadius = 6
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor.black.cgColor
+        return button
+    }
 }
 
