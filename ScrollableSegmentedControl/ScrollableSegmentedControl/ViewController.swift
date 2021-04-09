@@ -10,6 +10,21 @@ import UIKit
 class ViewController: UIViewController {
     
     let items  = ["All Fruits", "Orange", "Grapes", "Banana",  "Mango", "papaya", "coconut", "django"]
+    let allFruits = UIButton().createSegmentedControlButton(setTitle: "All Fruits")
+    let orange = UIButton().createSegmentedControlButton(setTitle: "Orange")
+    let grapes = UIButton().createSegmentedControlButton(setTitle: "Grapes")
+
+    let banana = UIButton().createSegmentedControlButton(setTitle: "Banana")
+    
+    let mango = UIButton().createSegmentedControlButton(setTitle: "Mango")
+    
+    let papaya = UIButton().createSegmentedControlButton(setTitle: "Papaya")
+    
+    let coconut = UIButton().createSegmentedControlButton(setTitle: "coconut")
+    
+    let django = UIButton().createSegmentedControlButton(setTitle: "django")
+   
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
