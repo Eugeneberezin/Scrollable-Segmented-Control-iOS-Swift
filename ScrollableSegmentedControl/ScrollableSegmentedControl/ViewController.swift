@@ -8,12 +8,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let items  = ["All Fruits", "Orange", "Grapes", "Banana",  "Mango", "papaya", "coconut", "django"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        configureScrollableSegmentedControl()
     }
-
+    
+    func configureScrollableSegmentedControl() {
+        let segmentedControl = UISegmentedControl(items: [])
+        
+    }
 
 }
 
